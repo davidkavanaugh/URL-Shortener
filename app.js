@@ -5,6 +5,7 @@ const uuid = require('short-uuid');
 const app = express();
 const mongoose = require('mongoose');
 const config = require('./config');
+const createAndSaveLink = require('./url_handler')
 const { MONGO_URI } = config;
 const db = `${MONGO_URI}`;
 
@@ -51,6 +52,9 @@ app.post('/api/shorturl/new', (req, res) => {
         short_url: `${id}`
       };
       links.push(link);
+
+      // add entry to MongoDB
+      createAndSaveLink(url, `${id}`);
 
       console.log(links);
 

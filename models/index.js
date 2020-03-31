@@ -1,5 +1,5 @@
 const Link = require('./link');
 
-const models = { Link };
+const models = { Link }
 
 module.exports = models;

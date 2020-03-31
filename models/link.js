@@ -1,14 +1,8 @@
 const mongoose = require('mongoose');
 
  const linkSchema = new mongoose.Schema ({
-     orignalURL: {
-         type: String
-     },
-     shortURL: {
-         type: String
-     }
+     originalURL: String,
+     shortURL: String
  });
 
- const Link = mongoose.model('Link', linkSchema);
-
- module.exports = Link;
+module.exports = mongoose.model('Link', linkSchema);
