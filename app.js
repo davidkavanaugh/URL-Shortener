@@ -1,30 +1,30 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const bodyParser = require( 'body-parser');
-const config = require('./config');
 const dns = require('dns');
 const uuid = require('short-uuid');
-
-const { MONGO_URI } = config;
-
 const app = express();
+const config = require('./config');
+const mongoose = require('mongoose');
+const { PORT } = config;
+const { MONGO_URI } = config;
+const db = `${MONGO_URI}`;
+
+// Start Server
+app.listen(PORT, () => console.log(`Server started on PORT ${PORT}`));
 
 // Bodyparser Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// DB Config
-const db = `${MONGO_URI}`;
-
 // Connect to MongoDB
 mongoose
   .connect(db, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true
+      useNewUrlParser: true,
+      useCreateIndex: true,
+      useUnifiedTopology: true
   }) 
   // Adding new mongo url parser
   .then(() => console.log('MongoDB Connected...'))
-  .catch(err => console.log(err));
+  .catch(err => console.log(err));  
 
 const links = [];
 
