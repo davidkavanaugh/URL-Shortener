@@ -3,14 +3,10 @@ const bodyParser = require( 'body-parser');
 const dns = require('dns');
 const uuid = require('short-uuid');
 const app = express();
-const config = require('./config');
 const mongoose = require('mongoose');
-const { PORT } = config;
+const config = require('./config');
 const { MONGO_URI } = config;
 const db = `${MONGO_URI}`;
-
-// Start Server
-app.listen(PORT, () => console.log(`Server started on PORT ${PORT}`));
 
 // Bodyparser Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
